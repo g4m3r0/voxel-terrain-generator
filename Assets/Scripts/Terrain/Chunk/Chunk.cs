@@ -291,6 +291,7 @@ namespace VoxelTG.Terrain
             Mesh plantsMesh = plantsMeshFilter.mesh;
             plantsMesh.Clear();
 
+            //TODO: change to new mesh API. Example https://github.com/keijiro/NoiseBall5/blob/master/Assets/NoiseBallRenderer.cs
             // blocks
             blockMesh.SetVertices<float3>(blockVerticles);
             _nativeConversionList.Clear();
