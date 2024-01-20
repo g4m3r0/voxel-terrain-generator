@@ -92,6 +92,7 @@ namespace VoxelTG.Terrain
         private bool isTerrainModified;
 
         private Texture2D biomeColorsTexture;
+        private readonly List<int> _nativeConversionList = new List<int>();
 
         #endregion
 
@@ -292,18 +293,34 @@ namespace VoxelTG.Terrain
 
             // blocks
             blockMesh.SetVertices<float3>(blockVerticles);
-            blockMesh.SetTriangles(blockTriangles.ToArray(), 0, false);
+            _nativeConversionList.Clear();
+            for (int i = 0; i < blockTriangles.Length; i++)
+            {
+                _nativeConversionList.Add(blockTriangles[i]);
+            }
+            blockMesh.SetTriangles(_nativeConversionList, 0, false);
             blockMesh.SetUVs<float2>(0, blockUVs);
 
             // liquids
             liquidMesh.SetVertices<float3>(liquidVerticles);
-            liquidMesh.SetTriangles(liquidTriangles.ToArray(), 0, false);
+            _nativeConversionList.Clear();
+            for (int i = 0; i < liquidTriangles.Length; i++)
+            {
+                _nativeConversionList.Add(liquidTriangles[i]);
+            }
+            liquidMesh.SetTriangles(_nativeConversionList, 0, false);
             liquidMesh.SetUVs<float2>(0, liquidUVs);
 
             //plants
             plantsMesh.SetVertices<float3>(plantsVerticles);
-            plantsMesh.SetTriangles(plantsTriangles.ToArray(), 0, false);
+            _nativeConversionList.Clear();
+            for (int i = 0; i < plantsTriangles.Length; i++)
+            {
+                _nativeConversionList.Add(plantsTriangles[i]);
+            }
+            plantsMesh.SetTriangles(_nativeConversionList, 0, false);
             plantsMesh.SetUVs<float2>(0, plantsUVs);
+            
 
             blockMesh.RecalculateNormals((MeshUpdateFlags)int.MaxValue);
             blockMeshFilter.mesh = blockMesh;
