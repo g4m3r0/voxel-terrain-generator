@@ -1,24 +1,24 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using Unity.Collections;
 using Unity.Jobs;
 using Unity.Mathematics;
 using UnityEngine;
+using VoxelTG.Config;
 using VoxelTG.Effects.SFX;
+using VoxelTG.Effects.VFX;
 using VoxelTG.Entities;
+using VoxelTG.Entities.Items;
 using VoxelTG.Jobs;
 using VoxelTG.Listeners.Interfaces;
 using VoxelTG.Player;
-using VoxelTG.Terrain.Blocks;
-using VoxelTG.Entities.Items;
-using VoxelTG.Effects.VFX;
 using VoxelTG.Terrain;
+using VoxelTG.Terrain.Blocks;
 using static VoxelTG.WorldSettings;
-using VoxelTG.Config;
-using System.Collections;
-using System.Linq;
 
 /*
  * Michał Czemierowski
@@ -409,7 +409,9 @@ namespace VoxelTG
                 chunk.BuildMesh(jobHandles);
             }
             else
+            {
                 chunk.GenerateTerrainDataAndBuildMesh(jobHandles, positionX, positionZ);
+            }
 
             // add chunk to chunk dict
             Chunks.Add(chunk.ChunkPosition, chunk);

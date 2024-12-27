@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /*
  * Michał Czemierowski
@@ -20,7 +17,7 @@ namespace VoxelTG
 
         [SerializeField] private int renderDistance = 8;
         public static int RenderDistance => Instance.renderDistance;
-        
+
         [SerializeField] private int maxChunksToBuildAtOnce = 1000;
 
         private void Awake()
@@ -32,12 +29,14 @@ namespace VoxelTG
                 return;
             }
             else
+            {
                 Instance = this;
+            }
 
             DontDestroyOnLoad(this);
 
-            if (limitFPS)
-                Application.targetFrameRate = targetFPS;
+            // ToDo: Camera/Player direction wont be updated properly when limiting is enabled 
+            if (limitFPS) { Application.targetFrameRate = targetFPS; }
 
             SaveDefaultSettings();
 

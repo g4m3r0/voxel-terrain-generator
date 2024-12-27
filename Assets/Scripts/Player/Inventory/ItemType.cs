@@ -13,6 +13,7 @@ namespace VoxelTG.Player.Inventory
         AMMO_RIFLE,
         AMMO_SHOTGUN,
         AMMO_SNIPER,
+        MOB_SPAWNER,
 
         // TOOLS - <1000; 1999>
         AXE = 1000,

@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using VoxelTG.Terrain;
 
 /*
  * Michał Czemierowski
@@ -27,15 +26,14 @@ namespace VoxelTG.UI
 
         private void Start()
         {
-            if(loadingScreen.activeSelf)
-                loadingScreen.SetActive(false);
+            if (loadingScreen.activeSelf) { loadingScreen.SetActive(false); }
         }
 
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
         }
-        
+
         /// <summary>
         /// UI Listener for 'START GAME' button
         /// </summary>
@@ -47,13 +45,13 @@ namespace VoxelTG.UI
         private IEnumerator LoadGameAsync()
         {
             AsyncOperation load = SceneManager.LoadSceneAsync(gameSceneName);
-            
+
             loadingScreen.SetActive(true);
             progressText.text = loadingSceneMessage;
 
             float progress = 0;
             // scene loading progress
-            while(!load.isDone)
+            while (!load.isDone)
             {
                 progress = load.progress / 2;
                 progressBar.fillAmount = progress;
@@ -61,10 +59,10 @@ namespace VoxelTG.UI
             }
 
             // chunk loading progress
-            while(World.LoadedChunks < World.TotalChunks)
+            while (World.LoadedChunks < World.TotalChunks)
             {
                 progressText.text = $"{buildingTerrainMessage} {World.LoadedChunks}/{World.TotalChunks}";
-                float buildProgress = progress + ((float)World.LoadedChunks / World.TotalChunks)/2;
+                float buildProgress = progress + ((float)World.LoadedChunks / World.TotalChunks) / 2;
                 progressBar.fillAmount = buildProgress;
                 yield return null;
             }

@@ -129,7 +129,7 @@ namespace VoxelTG.Player
                 currentChunk = World.GetChunk(x, z);
             }
 
-            if(currentChunk == null)
+            if (currentChunk == null)
                 return;
 
             int bix = x - currentChunk.ChunkPosition.x;
@@ -267,8 +267,7 @@ namespace VoxelTG.Player
         /// </summary>
         public void TryToJump()
         {
-            if (IsGrounded)
-                IsJumping = true;
+            if (IsGrounded) { IsJumping = true; }
         }
     }
 }

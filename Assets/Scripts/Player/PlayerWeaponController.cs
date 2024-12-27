@@ -46,6 +46,8 @@ namespace VoxelTG.Player.Interactions
         private WeaponEffectsController currentWeaponFX;
         private float timeToNextShoot = 0;
 
+        private EntityManager entityManager;
+
         /// <summary>
         /// Cache containing health state of damaged blocks
         /// </summary>
@@ -128,6 +130,8 @@ namespace VoxelTG.Player.Interactions
                             BlockPosition blockPosition = new BlockPosition(globalBlockPosition);
                             Chunk chunk = World.GetChunk(globalBlockPosition.x, globalBlockPosition.z);
                             BlockType blockType = chunk.GetBlock(blockPosition);
+
+                            EntityManager.SpawnEntity(EntityType.TEST_ENTITY, pointInTargetBlock);
 
                             currentWeaponFX?.OnBulletHitTerrain(hitInfo, chunk, blockPosition, blockType);
 

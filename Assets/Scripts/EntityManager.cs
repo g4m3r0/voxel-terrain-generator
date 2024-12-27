@@ -9,8 +9,8 @@ namespace VoxelTG.Entities
 {
     public class EntityManager : MonoBehaviour
     {
-        [SerializeField] private GameObject testEntity;
-        public void SpawnEntity(EntityType entityType, Vector3 worldPosition)
+        [SerializeField] private static GameObject testEntity;
+        public static void SpawnEntity(EntityType entityType, Vector3 worldPosition)
         {
             Entity entity = Instantiate(testEntity, worldPosition, Quaternion.identity).GetComponent<Entity>();
             if (entity is LivingEntity livingEntity)
